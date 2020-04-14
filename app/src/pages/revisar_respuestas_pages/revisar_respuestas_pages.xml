@@ -1,0 +1,31 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:lv="nativescript-ui-listview" xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoaded" unloaded="pageUnloaded">
+  <Page.actionBar>
+    <ActionBar title="" flat="true">
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="left"
+        android:horizontalAlignment="left"
+        class="stack_header">
+        <Image src="font://&#xf060;" class="action-image fas header_icon" tap="regresar"></Image>
+        <Label text="Revisar respuestas" textWrap="true" class="action-label font-weight-bold text-center"></Label>
+      </StackLayout>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout height="100%">
+    <StackLayout id="container" verticalAlignment="top" >
+      
+    </StackLayout>  
+    <lv:RadListView items="{{ respuestas }}" >
+      <lv:RadListView.itemTemplate>
+        <StackLayout orientation="vertical">
+          <Card:CardView class="cardStyle" margin="10" elevation="40" radius="15">
+            <StackLayout>
+              <Label text="{{ titulo }}" textWrap="true" class="titulo_pregunta"/>
+              <Label text="{{titulo_respuesta_seleccionada}}" textWrap="true" class="titulo_respuesta" style="{{ respuesta_correcta==opcion_seleccionada ? 'color:#32db64' : 'color:#f53d3d' }}"/>
+              <Label text="{{'Respuesta: '+respuesta_correcta}}" textWrap="true" class="respuesta_correcta" visibility="{{ respuesta_correcta==opcion_seleccionada ? 'collapsed' : 'visible' }}"/>
+            </StackLayout>
+          </Card:CardView>
+        </StackLayout>
+      </lv:RadListView.itemTemplate>
+    </lv:RadListView>
+  </GridLayout>
+</Page>

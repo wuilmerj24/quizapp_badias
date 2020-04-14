@@ -1,0 +1,14 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:lv="nativescript-ui-listview" shownModally="onShownModally">
+  <GridLayout rows="auto,auto,350,40" columns="*">
+    <Label text="Selecciona una categoria" textWrap="true" class="font-weight-bold m-10 text-center" row="0"/>
+    <StackLayout class="hr m-10" row="1"></StackLayout>
+    <lv:RadListView id="listView" items="{{ categorias }}" row="2" selectionBehavior="Press" itemSelected="onItemSelected" itemDeselected="onItemDeselected">
+      <lv:RadListView.itemTemplate>
+        <StackLayout orientation="vertical">
+          <Label text="{{name}}" />
+        </StackLayout>
+      </lv:RadListView.itemTemplate>
+    </lv:RadListView>
+    <Label text="Cancelar" textWrap="true" row="3" horizontalAlignment="right" class="m-b-15 m-r-10 font-weight-bold" fontSize="16" color="#fe0000" tap="cancelar"/>
+  </GridLayout>
+</Page>

@@ -1,0 +1,56 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoaded" unloaded="pageUnloaded" class="pagina">
+  <Page.actionBar>
+    <ActionBar title="" flat="true">
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="left"
+        android:horizontalAlignment="left"
+        class="stack_header">
+        <Image src="font://&#xf060;" class="action-image fas header_icon" tap="regresar"></Image>
+        <Label text="Resultado" textWrap="true" class="action-label font-weight-bold text-center"></Label>
+      </StackLayout>
+    </ActionBar>
+  </Page.actionBar>
+  <StackLayout>
+    <StackLayout>
+      <Card:CardView class="cardStyle" margin="10" elevation="40" radius="15">
+        <GridLayout columns="*,auto" rows="auto" class="m-20">
+          <Label text="Total de preguntas" class="titulo_item" textWrap="true" col="0"/>
+          <Label text="{{total_preguntas}}" textWrap="true" col="1" class="valor_titulo"/>
+        </GridLayout>
+       </Card:CardView>
+    </StackLayout>
+    <StackLayout class="hr m-t-20" borderColor="transparent"></StackLayout>
+    <StackLayout>
+      <Card:CardView class="cardStyle" margin="10" elevation="40" radius="15">
+        <GridLayout columns="*,auto" rows="auto" class="m-20">
+          <Label text="Puntuacion" textWrap="true" col="0" class="titulo_item"/>
+          <Label text="{{puntuacion}}" textWrap="true" col="1" class="valor_titulo"/>
+        </GridLayout>
+       </Card:CardView>
+    </StackLayout>
+    <StackLayout class="hr m-t-20" borderColor="transparent"></StackLayout>
+    <StackLayout>
+      <Card:CardView class="cardStyle" margin="10" elevation="40" radius="15">
+        <GridLayout columns="*,auto" rows="auto" class="m-20">
+          <Label text="Respuestas correctas" textWrap="true" col="0" class="titulo_item"/>
+          <Label text="{{respuestas_correctas}}" textWrap="true" col="1" class="valor_titulo"/>
+        </GridLayout>
+       </Card:CardView>
+    </StackLayout>
+    <StackLayout class="hr m-t-20" borderColor="transparent"></StackLayout>
+    <StackLayout>
+      <Card:CardView class="cardStyle" margin="10" elevation="40" radius="15">
+        <GridLayout columns="*,auto" rows="auto" class="m-20">
+          <Label text="Respuestas incorrectas" textWrap="true" col="0" class="titulo_item"/>
+          <Label text="{{respuestas_incorrectas}}" textWrap="true" col="1" class="valor_titulo"/>
+        </GridLayout>
+       </Card:CardView>
+    </StackLayout>
+
+    <StackLayout class="hr m-t-20" borderColor="transparent"></StackLayout>
+    <StackLayout orientation="horizontal" horizontalAlignment="center">
+      <Button class="btn -rounded-sm" text="Salir" tap="regresar"></Button>
+      <Button class="btn -rounded-sm" text="Revisar Respuestas" tap="revisar"></Button>
+    </StackLayout>
+  </StackLayout>
+</Page>

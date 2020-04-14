@@ -1,0 +1,66 @@
+.action-label{
+  color: #FFFFFF;
+  font-size: 14;
+}
+
+.header_icon{
+  font-size: 10;
+  color: #FFFFFF;
+  width: 7%;
+  height: 7%;
+  margin-right: 10;
+  font-weight: normal;
+}
+
+.txt_titulo{
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 16;
+  padding-left: 16;
+  padding-right: 16;
+  padding-top: 8;
+  padding-bottom: 8;
+}
+
+.content_categoria{
+  //background-color:#e6e6e6;
+  color:#00007f;
+}
+
+.lbl_container{
+  background-color:#e6e6e6;
+  padding: 20%;
+  border-radius: 10%;
+}
+
+.fab-button {
+  height:14%;
+  width:14%; /// this is required on iOS - Android does not require width so you might need to adjust styles
+  margin: 15;
+  background-color:#fe0000;
+  horizontal-align: right;
+  vertical-align: bottom;
+}
+
+.titulo_preguntas{
+  color:#00007f;
+  text-align: center;
+  font-size: 14;
+}
+
+.container_numeros{
+}
+
+.lbl_container_numbers{
+  background-color: #e6e6e6;
+  border-radius: 100%;
+  padding: 10%;
+  //margin: 2%;
+  font-size: 14;
+  font-weight: bold;
+}
+
+.lbl_container_numbers_selected{
+  background-color: #e6e6e6;
+  color:#FFFFFF;
+}

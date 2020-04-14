@@ -1,0 +1,10 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoaded" actionBarHidden="true" class="pagina_pricipal">
+    <ActionBar title="My App" icon="" flat="true"></ActionBar>
+    <StackLayout verticalAlignment="center">
+        <StackLayout class="p-20"  orientation="horizontal">
+            <Image src="~/assets/logo_sin_letras.png" stretch="aspectFill" decodeHeight="100" width="100" decodeWidth="100" height="100" loadMode="async"/>
+            <Image src="~/assets/logo.png" stretch="aspectFit" decodeHeight="200" width="200" decodeWidth="200" height="200" loadMode="async"/>                
+        </StackLayout>
+        <Button class="-rounded-lg btn" text="iniciar sesión con google" tap="{{login}}"></Button>
+    </StackLayout>
+</Page>

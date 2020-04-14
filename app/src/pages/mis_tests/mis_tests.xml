@@ -1,0 +1,70 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:lv="nativescript-ui-listview" xmlns:FAB="@nstudio/nativescript-floatingactionbutton" xmlns:nsDrawer="nativescript-ui-sidedrawer" loaded="onLoaded">
+  <Page.actionBar>
+    <ActionBar title="" flat="true">
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="left"
+        android:horizontalAlignment="left"
+        class="stack_header">
+        <Image src="font://&#xf0c9;" class="action-image fas header_icon" tap="openMenu"></Image>
+        <Label text="DeXamen" class="action-label font-weight-bold text-center"></Label>
+      </StackLayout>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout height="100%">
+    <StackLayout id="container" verticalAlignment="top" >
+      <Label text="Mis Tests" textWrap="true" class="txt_titulo"/>
+    </StackLayout>
+    <lv:RadListView id="listView" height="90%" width="100%"  items="{{categorias}}" verticalAlignment="bottom" selectionBehavior="Press" itemSelected="onItemSelected">
+      <lv:RadListView.listViewLayout>
+        <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="3" backgroundColor="transparent"/>
+      </lv:RadListView.listViewLayout>
+      <lv:RadListView.itemTemplate>
+        <StackLayout class="content_categoria">
+          <Label text="{{categoria}}" textWrap="true" class="lbl_container"/>
+        </StackLayout>
+      </lv:RadListView.itemTemplate>
+    </lv:RadListView>
+    <FAB:fab 
+      tap="{{openSheet}}"
+      icon="res://baseline_add_white_24"
+      rippleColor="#FFFFFF"
+      class="fab-button" 
+      visibility="{{ !show_sheet ? 'visible' : 'collapsed' }}"
+    />
+    <StackLayout height="100%" width="100%" backgroundColor="rgba(0, 0, 0, 0.5)" visibility="{{ show_sheet ? 'visible' : 'collapsed' }}">
+        
+    </StackLayout>
+    <nsDrawer:RadSideDrawer id="sideDrawer_b" drawerLocation="Bottom" drawerContentSize="320" drawerOpening="onDrawerOpening" drawerClosing="onDrawerClosing">
+      <nsDrawer:RadSideDrawer.drawerContent>
+        <GridLayout rows="auto, *" backgroundColor="#FFFFFF">
+          <StackLayout class="headerContent" backgroundColor="#00007f">
+            <Label text="{{name_selected}}" color="#FFFFFF" class="text-left m-15"/>
+          </StackLayout>
+          <ScrollView row="1">
+            <StackLayout>
+              <Label text="Seleccione el número total de preguntas" textWrap="true" class="titulo_preguntas"/>
+              <StackLayout orientation="horizontal" horizontalAlignment="center" class="container_numeros">
+                <Label text="10" textWrap="true" class="lbl_container_numbers m-r-5" tap="numPreguntasSelectes"/>
+                <Label text="20" textWrap="true" class="lbl_container_numbers m-r-5" tap="numPreguntasSelectes"/>
+                <Label text="30" textWrap="true" class="lbl_container_numbers m-r-5" tap="numPreguntasSelectes"/>
+                <Label text="40" textWrap="true" class="lbl_container_numbers m-r-5" tap="numPreguntasSelectes"/>
+                <Label text="50" textWrap="true" class="lbl_container_numbers m-r-5" tap="numPreguntasSelectes"/>                
+              </StackLayout>
+              <StackLayout class="hr m-10" borderColor="transparent"></StackLayout>
+              <Label text="Seleccione dificultad" textWrap="true" class="titulo_preguntas"/>
+              <StackLayout orientation="horizontal" horizontalAlignment="center" class="container_numeros">
+                <Label text="Cualquiera" textWrap="true" class="lbl_container_numbers m-r-5" tap="dificultadSelected"/>            
+                <Label text="Facil" textWrap="true" class="lbl_container_numbers m-r-5" tap="dificultadSelected"/>            
+                <Label text="Medio" textWrap="true" class="lbl_container_numbers m-r-5" tap="dificultadSelected"/>            
+                <Label text="Dificil" textWrap="true" class="lbl_container_numbers m-r-5" tap="dificultadSelected"/>            
+              </StackLayout>
+              <StackLayout class="hr m-10" borderColor="transparent"></StackLayout>
+              <Button class="-rounded-lg btn" text="Iniciar" tap="iniciar"></Button>
+            </StackLayout>
+          </ScrollView>
+        </GridLayout>
+      </nsDrawer:RadSideDrawer.drawerContent>
+    </nsDrawer:RadSideDrawer>
+
+  </GridLayout>
+</Page>

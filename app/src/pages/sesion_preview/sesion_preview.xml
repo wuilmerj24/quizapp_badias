@@ -1,0 +1,9 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" actionBarHidden="true" loaded="onLoaded">
+  <StackLayout verticalAlignment="center">
+    <Image src="{{foto}}" stretch="aspectFill" decodeHeight="100" width="100" decodeWidth="100" height="100" loadMode="sync"/>
+    <Label text="Bienvenido," textWrap="true" class="titulo_class"/>
+    <Label text="{{nom_ape}}" textWrap="true" class="nombre_class"/>
+    
+    <Button class="-rounded-lg btn" text="Continuar" tap="continuar"></Button>
+  </StackLayout>
+</Page>

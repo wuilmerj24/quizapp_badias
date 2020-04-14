@@ -1,0 +1,48 @@
+<nsDrawer:RadSideDrawer id="sideDrawer" xmlns:nsDrawer="nativescript-ui-sidedrawer" loaded="onLoaded" class="ns-statusbar-transparent">
+  <nsDrawer:RadSideDrawer.drawerTransition>
+		<nsDrawer:SlideInOnTopTransition/>
+  </nsDrawer:RadSideDrawer.drawerTransition>
+	<nsDrawer:RadSideDrawer.drawerContent>
+  	<GridLayout rows="auto, *" class="nt-drawer__content">
+    	<StackLayout class="nt-drawer__header" backgroundColor="#010080">
+        <StackLayout orientation="horizontal" width="100%" horizontalAlignment="center">
+      	  <Image class="nt-drawer__header-image fas t-36" src="{{foto}}"/>
+          <Label text="&#xf2f5;" class="nt-icon fas text-right" fontSize="17" verticalAlignment="center"  color="#FFFFFF" tap="{{salir}}"/>
+        </StackLayout>
+        <Label class="nt-drawer__header-brand" text="{{nom_ape}}" fontSize="14"/>
+        <Label class="nt-drawer__header-footnote" text="{{correo}}" fontSize="14"/>
+      </StackLayout>
+			<ScrollView row="1" class="nt-drawer__body">
+      	<StackLayout height="100%">
+        	<GridLayout columns="auto, *" class="{{ 'nt-drawer__list-item' + (selectedPage === 'Test' ? ' -selected': '') }}" route="src/pages/sesion_page/sesion_page" title="Test" tap="onNavigationItemTap">
+            <Label row="0" col="0" text="&#xf03a;" class="nt-icon fas"/>
+						<Label row="0" col="1" text="Tests" class="p-r-10" color="#010080"/>
+          </GridLayout>
+        	<GridLayout columns="auto, *" class="{{ 'nt-drawer__list-item' + (selectedPage === 'Mis tests' ? ' -selected': '') }}" route="src/pages/mis_tests/mis_tests" title="Mis test" tap="onNavigationItemTap">
+            <Label row="0" col="0" text="&#xf03a;" class="nt-icon fas" />
+						<Label row="0" col="1" text="Mis tests" class="p-r-10" color="#010080"/>
+          </GridLayout>
+          <StackLayout class="hr m-10" borderColor="#010080"></StackLayout>
+          <Label text="Enlaces a sitios webs" textWrap="true" color="#010080" class="text-center" tap="{{getEnlaces}}"/>
+          <StackLayout class="hr m-10" borderColor="#010080"></StackLayout>
+          <ListView 
+            items="{{ enlaces }}" 
+            itemTap="{{onItemTap}}"
+            class="list-group" 
+            id="listView"
+            height="90%">
+            <ListView.itemTemplate>
+              <StackLayout orientation="horizontal" class="nt-drawer__list-item">
+                <Label text="&#xf03a;" class="fas" color="#010080"/>
+                <Label text="{{titulo}}" class="p-r-10" color="#010080"/>  
+              </StackLayout>
+            </ListView.itemTemplate>
+          </ListView>
+        </StackLayout>
+      </ScrollView>
+    </GridLayout>
+  </nsDrawer:RadSideDrawer.drawerContent>
+	<nsDrawer:RadSideDrawer.mainContent>
+  	<Frame defaultPage="src/pages/sesion_page/sesion_page"></Frame>
+  </nsDrawer:RadSideDrawer.mainContent>
+</nsDrawer:RadSideDrawer>

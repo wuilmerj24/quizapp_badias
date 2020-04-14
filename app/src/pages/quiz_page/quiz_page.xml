@@ -1,0 +1,38 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview"  xmlns:CheckBox="@nstudio/nativescript-checkbox" loaded="onLoaded" unloaded="pageUnloaded">
+  <Page.actionBar>
+    <ActionBar title="" flat="true">
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="left"
+        android:horizontalAlignment="left"
+        class="stack_header">
+        <Image src="font://&#xf060;" class="action-image fas header_icon" tap="regresar"></Image>
+        <Label text="{{titulo_categoria}}" textWrap="true" class="action-label font-weight-bold text-center"></Label>
+      </StackLayout>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout height="100%">
+    <StackLayout id="container" verticalAlignment="top" >
+      
+    </StackLayout>
+    <StackLayout class="m-20">
+      <StackLayout orientation="horizontal">
+        <GridLayout class="container_numero_pregunta">
+          <Label text="{{numero_pregunta}}" textWrap="true" col="0" class="numero_pregunta" verticalAlignment="center" horizontalAlignment="center"/>
+        </GridLayout>
+        <Label text="{{titulo_pregunta}}" textWrap="true" class="titulo_pregunta" verticalAlignment="center"/>
+      </StackLayout>
+      <StackLayout class="hr m-10" borderColor="transparent"></StackLayout>
+      <StackLayout>
+        <Card:CardView class="cardStyle" margin="1" elevation="20" radius="10">
+          <GridLayout rows="auto,auto,auto,auto" columns="auto" class="m-t-10 m-r-5 m-b-10 m-l-5">
+            <CheckBox:CheckBox  checked="false" text="{{opcion_a}}" color="#00007f" fillColor="#00007f"  id="opcion_a" row="0" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_b}}" color="#00007f" fillColor="#00007f"  id="opcion_b" row="1" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_c}}" color="#00007f" fillColor="#00007f"  id="opcion_c" row="2" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_d}}" color="#00007f" fillColor="#00007f"  id="opcion_d" row="3" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
+          </GridLayout>
+       </Card:CardView>
+      </StackLayout>
+    </StackLayout>
+    <Button class="btn -rounded-lg" text="{{titulo_btn}}" horizontalAlignment="center" verticalAlignment="bottom" tap="continuar"></Button>
+  </GridLayout>
+</Page>

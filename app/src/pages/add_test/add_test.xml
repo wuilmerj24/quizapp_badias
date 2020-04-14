@@ -1,0 +1,50 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoaded">
+  <Page.actionBar>
+    <ActionBar title="" flat="true">
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="left"
+        android:horizontalAlignment="left"
+        class="stack_header">
+        <Image src="font://&#xf060;" class="action-image fas header_icon" tap="regresar"></Image>
+        <Label text="Crear nuevo test" class="action-label font-weight-bold text-center"></Label>
+      </StackLayout>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout height="100%">
+    <StackLayout id="container" verticalAlignment="top" >
+      
+    </StackLayout>
+    <StackLayout class="m-3">
+      <Card:CardView class="cardStyle" margin="3" elevation="40" radius="8">
+        <StackLayout class="nt-form">
+          <!-- Option 2: An input with a label on top, and a bottom border -->
+          <GridLayout columns="*,auto" rows="auto" class="nt-input">
+            <Label text="&#xf0d7;" textWrap="true" class="fas" col="1" verticalAlignment="center" tap="openCategorias"/>
+            <TextField hint="Selecciona una categoria" col="0" verticalAlignment="center" borderBottomColor="#fe0000" tap="openCategorias" editable="false" text="{{value_categoria_selected}}"></TextField>
+          </GridLayout>
+          <Label text="Debes seleccionar una categoria" textWrap="true" class="m-l-20" color="#fe0000" visibility="{{ show_error_categoria ? 'visible' : 'collapsed' }}"/>
+          
+          <GridLayout columns="*,auto" rows="auto" class="nt-input">
+            <Label text="&#xf0d7;" textWrap="true" class="fas" col="1" verticalAlignment="center" tap="openDificultad"/>
+            <TextField hint="Selecciona nivel de dificultad" col="0" verticalAlignment="center" borderBottomColor="#fe0000" editable="false" text="{{value_dificultad_selected}}" tap="openDificultad"></TextField>
+          </GridLayout>
+          <Label text="Debes seleccionar nivel de dificultad" textWrap="true" class="m-l-20" color="#fe0000" visibility="{{ show_error_dificultad ? 'visible' : 'collapsed' }}"/>
+
+          <GridLayout rows="20, auto"  class="nt-input">
+            <Label row="1" opacity="0.4" fontSize="14" class="input" text="Ingresa numero de preguntas"></Label>
+            <TextField row="1" focus="onFocus" blur="onBlur" borderBottomColor="#fe0000" keyboardType="number" maxLength="2" returnKeyType="next" textChange="numeroPreguntasChange" id="numer_preguntas_id"></TextField>
+          </GridLayout>
+          <Label text="Debes agregar numero de preguntas" textWrap="true" class="m-l-20" color="#fe0000" visibility="{{ show_error_num_preguntas ? 'visible' : 'collapsed' }}"/>
+
+          <GridLayout rows="20, auto"  class="nt-input">
+            <Label row="1" opacity="0.4" fontSize="14" class="input" text="Tiempo de duracion del test"></Label>
+            <TextField row="1" focus="onFocus" blur="onBlur" borderBottomColor="#fe0000" keyboardType="number" maxLength="2" returnKeyType="next" textChange="tiempoChange" id="tiempo_id"></TextField>
+          </GridLayout>
+          <Label text="Debes agregar tiempo" textWrap="true" class="m-l-20" color="#fe0000" visibility="{{ show_error_tiempo ? 'visible' : 'collapsed' }}"/>
+
+          <Button class="-rounded-lg btn" text="Guardar" isEnabled="{{btn_enabled}}" tap="{{guardar}}"></Button>
+        </StackLayout>  
+      </Card:CardView>
+    </StackLayout>
+  </GridLayout>
+</Page>
