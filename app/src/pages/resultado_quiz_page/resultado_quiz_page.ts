@@ -32,7 +32,7 @@ export function onLoaded(args){
   let vm = fromObject({
     total_preguntas: actualFrame.get("respuestas").length+1,
     puntuacion: puntuacion.toFixed(2)+"%",
-    respuestas_correctas: correctas + "/" + actualFrame.get("respuestas").length + 1,
+    respuestas_correctas: correctas + "/" + (parseInt(actualFrame.get("respuestas").length) + 1),
     respuestas_incorrectas: (actualFrame.get("respuestas").length+1)-correctas,
   });
   page.bindingContext=vm;

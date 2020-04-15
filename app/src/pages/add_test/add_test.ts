@@ -1,5 +1,5 @@
 import { AddTestViewModel} from "./add_test_view_model";
-import { Button, ShowModalOptions } from "tns-core-modules/ui";
+import { Button, ShowModalOptions, Page, TextField } from "tns-core-modules/ui";
 import { action, ActionOptions } from "tns-core-modules/ui/dialogs";
 import * as app from "tns-core-modules/application";
 const Color = require("tns-core-modules/color").Color;
@@ -7,19 +7,31 @@ let id_categoria_selected=null;
 let ambito_categoria_selected=null;
 let nivel_dificultad_selected=null;
 let pagina=null;
+import { Utils } from '../../utils/utils';
+const utils = new Utils();
+import { SqliteControlador } from '../../sqlite_controler/sqlite_controler';
+import { LoadingIndicator, Mode, OptionsCommon } from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
+const dbapi = new SqliteControlador();
+import { SnackBar, SnackBarOptions } from "@nstudio/nativescript-snackbar";
+import { fromObject } from "tns-core-modules/data/observable/observable";
+const snackbar = new SnackBar();
+let actualFrame = null;
 
 export function onLoaded(args) {
+  const page:Page =<Page> args.object;
   let viewModel = new AddTestViewModel();
-  const page = args.object;
   page.bindingContext = viewModel;
   pagina=page;
+  actualFrame = page.frame.bindingContext;
   if (app.android) {
     app.android.on(app.AndroidApplication.activityBackPressedEvent, backEvent);
   }
+  page.bindingContext.set("pagina", actualFrame.get("pagina"))
 }
 
 export function regresar(args){
-  args.object.closeModal();
+  args.object.closeModal({ result:null});
 }
 
 export function onFocus(args){
@@ -112,6 +124,16 @@ export function numeroPreguntasChange(args) {
   cheFormStatus();
 }
 
+export function nombreChange(args) {
+  const txt = args.object;
+  if (txt.text.length > 0) {
+    txt.bindingContext.set("show_error_nombre", false);
+  } else {
+    txt.bindingContext.set("show_error_nombre", true);
+  }
+  cheFormStatus();
+}
+
 export function tiempoChange(args) {
   const txt = args.object;
   if (txt.text.length > 0) {
@@ -124,9 +146,10 @@ export function tiempoChange(args) {
 
 export function cheFormStatus() {
   //const page = args.object;
+  var nombre_text = pagina.getViewById("nombre_id");
   var numero_preguntas_text = pagina.getViewById("numer_preguntas_id");
   var tiempo_id_text = pagina.getViewById("tiempo_id");
-  if (id_categoria_selected != null && nivel_dificultad_selected >= 1 && numero_preguntas_text.text.length > 0 && tiempo_id_text.text.length > 0) {
+  if (nombre_text.text.length > 0 && id_categoria_selected != null && nivel_dificultad_selected >= 1 && numero_preguntas_text.text.length > 0 && tiempo_id_text.text.length > 0) {
     pagina.bindingContext.set("btn_enabled", true);
   } else {
     pagina.bindingContext.set("btn_enabled", false);
@@ -135,5 +158,5 @@ export function cheFormStatus() {
 
 export function backEvent(args) {
   //if (iRefuseToGoBack) { args.cancel = true; }
-  args.object.closeModal();
+  args.object.closeModal({result:null});
 }

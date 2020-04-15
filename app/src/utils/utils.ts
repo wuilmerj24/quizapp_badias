@@ -30,7 +30,7 @@ export class Utils{
       mode: Mode.Indeterminate,
       android: {
         //view: view,
-        cancelable: true,
+        cancelable: false,
       },
       ios: {
         //view: view,
@@ -42,8 +42,8 @@ export class Utils{
   }
 
   showSnackSimple(msj, colortxt, bgcolor) {
-    snackbar.simple(msj, colortxt, bgcolor, 3, false).then((args) => {
-    });
+    snackbar.simple(msj, colortxt, bgcolor, 3, false,).then((args) => {
+    }).catch((err)=>console.log("err snack: ",JSON.stringify(err)));
     return snackbar;
   }
 

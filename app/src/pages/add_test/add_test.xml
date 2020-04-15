@@ -17,7 +17,12 @@
     <StackLayout class="m-3">
       <Card:CardView class="cardStyle" margin="3" elevation="40" radius="8">
         <StackLayout class="nt-form">
-          <!-- Option 2: An input with a label on top, and a bottom border -->
+        <GridLayout rows="20, auto"  class="nt-input">
+            <Label row="1" opacity="0.4" fontSize="14" class="input" text="Ingresa un nombre"></Label>
+            <TextField row="1" focus="onFocus" blur="onBlur" borderBottomColor="#fe0000" returnKeyType="next" textChange="nombreChange" id="nombre_id"></TextField>
+          </GridLayout>
+          <Label text="Debes agregar un nombre para este test" textWrap="true" class="m-l-20" color="#fe0000" visibility="{{ show_error_nombre ? 'visible' : 'collapsed' }}"/>
+
           <GridLayout columns="*,auto" rows="auto" class="nt-input">
             <Label text="&#xf0d7;" textWrap="true" class="fas" col="1" verticalAlignment="center" tap="openCategorias"/>
             <TextField hint="Selecciona una categoria" col="0" verticalAlignment="center" borderBottomColor="#fe0000" tap="openCategorias" editable="false" text="{{value_categoria_selected}}"></TextField>

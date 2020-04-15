@@ -1,1 +1,1 @@
-<Frame defaultPage="src/pages/add_test/add_test"/>
+<Frame id="modal_root_add_test" showingModally="onPageLoaded" defaultPage="src/pages/add_test/add_test"/>

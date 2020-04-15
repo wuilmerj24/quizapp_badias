@@ -24,11 +24,11 @@
       <StackLayout class="hr m-10" borderColor="transparent"></StackLayout>
       <StackLayout>
         <Card:CardView class="cardStyle" margin="1" elevation="20" radius="10">
-          <GridLayout rows="auto,auto,auto,auto" columns="auto" class="m-t-10 m-r-5 m-b-10 m-l-5">
-            <CheckBox:CheckBox  checked="false" text="{{opcion_a}}" color="#00007f" fillColor="#00007f"  id="opcion_a" row="0" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
-            <CheckBox:CheckBox  checked="false" text="{{opcion_b}}" color="#00007f" fillColor="#00007f"  id="opcion_b" row="1" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
-            <CheckBox:CheckBox  checked="false" text="{{opcion_c}}" color="#00007f" fillColor="#00007f"  id="opcion_c" row="2" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
-            <CheckBox:CheckBox  checked="false" text="{{opcion_d}}" color="#00007f" fillColor="#00007f"  id="opcion_d" row="3" tap="toggleCheck" checkPadding="22" style="font-size: 18pt!important;"/>
+          <GridLayout rows="auto,auto,auto,auto" columns="auto" class="m-t-10 m-r-5 m-b-10 m-l-5" id="container_card">
+            <CheckBox:CheckBox  checked="false" text="{{opcion_a}}" color="#00007f" fillColor="#00007f"  id="opcion_a" row="0" tap="toggleCheck" checkPadding="22" style="font-size: 16pt!important;" loaded="onCheckLoaded"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_b}}" color="#00007f" fillColor="#00007f"  id="opcion_b" row="1" tap="toggleCheck" checkPadding="22" style="font-size: 16pt!important;"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_c}}" color="#00007f" fillColor="#00007f"  id="opcion_c" row="2" tap="toggleCheck" checkPadding="22" style="font-size: 16pt!important;"/>
+            <CheckBox:CheckBox  checked="false" text="{{opcion_d}}" color="#00007f" fillColor="#00007f"  id="opcion_d" row="3" tap="toggleCheck" checkPadding="22" style="font-size: 16pt!important;"/>
           </GridLayout>
        </Card:CardView>
       </StackLayout>

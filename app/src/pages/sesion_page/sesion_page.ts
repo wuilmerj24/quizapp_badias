@@ -57,9 +57,18 @@ export function onDrawerClosing(args){
 
 export function openSheet(args: EventData){
   const mainView: Button = <Button>args.object;
+  const page:Page=<Page> mainView.page;
   const option: ShowModalOptions = {
-    context: {},
-    closeCallback: () => {
+    context: {pagina:page},
+    closeCallback: async(opcion) => {
+      if(opcion!=undefined){
+        if (opcion.result==true){
+          await utils.showSnackSimple("Test generado correctamente", "#FFFFFF", "#32db64");
+        }else if(opcion.result==false){
+          await utils.showSnackSimple("No se pudo almacenar el test.", "#FFFFFF", "#f53d3d");
+        }
+
+      }
     },
     fullscreen: true,
     animated: true,

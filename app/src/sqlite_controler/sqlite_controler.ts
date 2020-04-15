@@ -12,7 +12,7 @@ export class SqliteControlador{
 
   public createTables(){
     var sql_user = 'CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY,uid TEXT,correo TEXT,nom_ape TEXT,foto TEXT)';
-    var sql_test = 'CREATE TABLE IF NOT EXISTS test(id INTEGER PRIMARY KEY,id_categoria TEXT,categoria TEXT, nivel_dificultad INTEGER, numero_preguntas INTEGER,duracion INTEGER,ambito INTEGER)';
+    var sql_test = 'CREATE TABLE IF NOT EXISTS test(id INTEGER PRIMARY KEY,id_categoria TEXT,categoria TEXT, nivel_dificultad INTEGER, numero_preguntas INTEGER,duracion INTEGER,ambito INTEGER,titulo_nombre_categoria TEXT)';
     var sql_categorias = 'CREATE TABLE categorias(id INTEGER PRIMARY KEY,id_categoria INTEGER UNIQUE,name TEXT,ambito INTEGER)';
     db.execSQL(sql_user);
     db.execSQL(sql_test);
@@ -62,8 +62,8 @@ export class SqliteControlador{
   }
 
   public insertMiTest(test) {
-    var sql = "INSERT INTO test(id_categoria,categoria,nivel_dificultad,numero_preguntas,duracion,ambito) VALUES (?,?,?,?,?,?)";
-    var result = db.execSQL(sql, [test.id_categoria, test.categoria, test.nivel_dificultad, test.numero_preguntas, test.duracion,test.ambito]);
+    var sql = "INSERT INTO test(id_categoria,categoria,nivel_dificultad,numero_preguntas,duracion,ambito,titulo_nombre_categoria) VALUES (?,?,?,?,?,?,?)";
+    var result = db.execSQL(sql, [test.id_categoria, test.categoria, test.nivel_dificultad, test.numero_preguntas, test.duracion, test.ambito, test.titulo_nombre_categoria]);
     return result;
   }
 }

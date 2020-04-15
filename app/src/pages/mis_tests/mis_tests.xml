@@ -20,7 +20,7 @@
       </lv:RadListView.listViewLayout>
       <lv:RadListView.itemTemplate>
         <StackLayout class="content_categoria">
-          <Label text="{{categoria}}" textWrap="true" class="lbl_container"/>
+          <Label text="{{titulo_nombre_categoria}}" textWrap="true" class="lbl_container text-center"/>
         </StackLayout>
       </lv:RadListView.itemTemplate>
     </lv:RadListView>

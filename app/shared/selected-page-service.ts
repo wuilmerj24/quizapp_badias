@@ -19,7 +19,7 @@ export class SelectedPageService {
     SelectedPageService._instance = this;
 
     // Observable selectedPage source
-    this._selectedPageSource = new BehaviorSubject<string>("Home");
+    this._selectedPageSource = new BehaviorSubject<string>("Test");
 
     // Observable selectedPage stream
     this.selectedPage$ = this._selectedPageSource.asObservable();

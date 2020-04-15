@@ -70,8 +70,8 @@ export class SideMenuModel extends Observable{
       title: "Cerrar sesión",
       message: "Quiere cerrar la sesión?",
       okButtonText: "Si",
-      cancelButtonText: "",
-      neutralButtonText: "No"
+      cancelButtonText: "No",
+      neutralButtonText: " "
     };
     confirm(confirmOptions).then(async(result) => {
       //console.log(result);
