@@ -5,9 +5,6 @@ const utils = new Utils();
 import {SqliteControlador} from './src/sqlite_controler/sqlite_controler';
 const dbapi=new SqliteControlador();
 const Sqlite = require('nativescript-sqlite');
-import { install } from 'nativescript-material-bottomsheet';
-
-install();
 
 firebase.init({
   persist: false,

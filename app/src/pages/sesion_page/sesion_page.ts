@@ -1,5 +1,5 @@
 import { Page, ShowModalOptions } from "tns-core-modules/ui/page";
-import { Observable, EventData } from "tns-core-modules/data/observable";
+import { Observable, EventData, fromObject } from "tns-core-modules/data/observable";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { Frame, View } from "tns-core-modules/ui/frame";
@@ -7,7 +7,6 @@ import * as app from "tns-core-modules/application";
 import {SesionPageViewModel} from './sesion_page_view_model';
 import { Button } from "tns-core-modules/ui";
 var pagina=null;
-import { BottomSheetOptions} from 'nativescript-material-bottomsheet';
 import { SyncController } from '../../sync_controller/sync_controller';
 const syncapi = new SyncController();
 import { Utils } from '../../utils/utils';
@@ -21,11 +20,15 @@ let dificultad_selected=null;
 let ambito_selected=0;
 
 export function onLoaded(args){
-  const page = args.object;
-  page.bindingContext = new SesionPageViewModel();
+  const page:Page =<Page> args.object;
   listView = page.getViewById("listView");
-  page.bindingContext.set("name_selected","TITULO");
-  page.bindingContext.set("pregunta_selected",0);
+  let vm=fromObject({
+    name_selected:"TITULO",
+    pregunta_selected:0,
+    show_sheet:false
+  })
+  page.bindingContext=vm;
+  page.bindingContext = new SesionPageViewModel();
   pagina=page;
 }
 
@@ -88,6 +91,20 @@ export function onItemSelected(args:EventData){
   ambito_selected=selectedTitles[0].ambito;
   let drawer_sheet = <RadSideDrawer>pagina.getViewById("sideDrawer_c");
   drawer_sheet.showDrawer();
+}
+
+export function onItemDeselected(args) {
+  const selectedItems = listView.getSelectedItems();
+  let selectedTitles = "Selected items: ";
+  for (let i = 0; i < selectedItems.length; i++) {
+    //selectedTitles += selectedItems[i].itemName;
+
+    if (i < selectedItems.length - 1) {
+      //selectedTitles += ", ";
+    }
+  }
+
+  //lblSelection.text = selectedTitles;
 }
 
 export function numPreguntasSelectes(args){

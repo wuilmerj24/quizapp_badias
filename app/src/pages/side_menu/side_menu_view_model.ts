@@ -29,8 +29,11 @@ export class SideMenuModel extends Observable{
     super();
     SelectedPageService.getInstance().updateSelectedPage("Test");
     SelectedPageService.getInstance().selectedPage$
-      .subscribe((selectedPage: string) => this.selectedPage = selectedPage);
+    .subscribe((selectedPage: string) => this.selectedPage = selectedPage);
     this.getMisDatos();
+    let PackageManager=android.content.pm.PackageManager;
+    var pkg = app.android.context.getPackageManager().getPackageInfo(app.android.context.getPackageName(), PackageManager.GET_META_DATA);
+    this.set("version_code", pkg.versionName);
   }
 
   public async getMisDatos() {

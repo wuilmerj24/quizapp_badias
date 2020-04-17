@@ -7,7 +7,6 @@ import * as app from "tns-core-modules/application";
 import { MisTestViewModel} from './mis_tests_view_model';
 import { Button } from "tns-core-modules/ui";
 var pagina = null;
-import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
 import { SyncController } from '../../sync_controller/sync_controller';
 import { ShowModalOptions } from "tns-core-modules/ui/core/view";
 import { Utils } from '../../utils/utils';
@@ -65,8 +64,16 @@ export function onItemSelected(args: EventData) {
   }
   page.bindingContext.set("name_selected", selectedTitles[0].categoria);
   ambito_selected = selectedTitles[0].ambito;
-  let drawer_sheet = <RadSideDrawer>pagina.getViewById("sideDrawer_b");
-  drawer_sheet.showDrawer();
+  syncapi.generarPreguntas(selectedTitles[0].nivel_dificultad, selectedTitles[0].ambito, selectedTitles[0].numero_preguntas).then(async (preguntas) => {
+    var v = await preguntas.filter(utils.filterArray);
+    if (v.length > 0) {
+      openQuizPage(args, preguntas);
+    } else {
+      await utils.showSnackSimple("No se pudo generar el test. Intentalo mas tarde", "#FFFFFF", "#f53d3d");
+    }
+  })
+  //let drawer_sheet = <RadSideDrawer>pagina.getViewById("sideDrawer_b");
+  //drawer_sheet.showDrawer();
 }
 
 export function numPreguntasSelectes(args) {
@@ -105,10 +112,29 @@ export async function iniciar(args) {
   let drawer_sheet = <RadSideDrawer>pagina.getViewById("sideDrawer_b");
   drawer_sheet.closeDrawer();
   if (num_preguntas > 0 && dificultad_selected != null || dificultad_selected != undefined && ambito_selected > 0) {
-    syncapi.generarPreguntas(dificultad_selected, ambito_selected, num_preguntas).then(async (preguntas) => {
-      console.log(JSON.stringify(preguntas));
+    syncapi.generarPreguntas(dificultad_selected, ambito_selected, num_preguntas).then(async (preguntas) => {  
+      var v = await preguntas.filter(utils.filterArray);
+      if (v.length > 0) {
+        openQuizPage(args, preguntas);
+      } else {
+        await utils.showSnackSimple("No se pudo generar el test. Intentalo mas tarde", "#FFFFFF", "#f53d3d");
+      }
     })
   }else{
     await utils.showSnackSimple("Debes seleccionar las opciones para poder generar un test.", "#FFFFFF", "#f53d3d");
   }
+}
+
+export function openQuizPage(args, preguntas) {
+  const mainView: Button = <Button>args.object;
+  const option: ShowModalOptions = {
+    context: { preguntas: preguntas, categoria: mainView.bindingContext.get("name_selected") },
+    closeCallback: (opcion) => {
+    },
+    fullscreen: true,
+    animated: true,
+    stretched: true,
+  };
+  mainView.showModal("src/modales/modal_root_quiz_page/modal_root_quiz_page", option);
+  //mainView.showModal("src/pages/resultado_quiz_page/resultado_quiz_page", option);
 }

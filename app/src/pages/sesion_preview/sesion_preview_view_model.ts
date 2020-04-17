@@ -5,6 +5,8 @@ import { Utils } from '../../utils/utils';
 const utils = new Utils();
 import { SqliteControlador } from '../../sqlite_controler/sqlite_controler';
 const dbapi = new SqliteControlador();
+import { SyncController} from '../../sync_controller/sync_controller';
+const syncapi= new SyncController();
 const Sqlite = require('nativescript-sqlite');
 import { Cache } from "tns-core-modules/ui/image-cache";
 const cache = new Cache();
@@ -16,7 +18,7 @@ export class SesionPreviewViewModel extends Observable{
     this.getMisDatos();
   }
 
-  private getMisDatos(){
+  private async getMisDatos(){
     dbapi.getUusario().then(async (res) => {
       if (res != null || res != undefined) {
         //console.log(res)

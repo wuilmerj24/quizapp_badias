@@ -5,31 +5,80 @@ import { device, screen, isAndroid, isIOS } from "tns-core-modules/platform";
 const dbapi=new SqliteControlador();
 import { SecureStorage } from "nativescript-secure-storage";
 
+
 // instantiate the plugin
 let secureStorage = new SecureStorage();
 
 export class SyncController{
   public secureStorage=secureStorage;
   private preguntas:any[]=[];
+  
   constructor(){
-    
   }
 
   async getCategorias(){
-    var categorias_coleccion = await firebase.firestore.collection("categorias").orderBy("id", "asc");
-    await categorias_coleccion.get({ source: "server" }).then(async (querySnapshot) => {
+    await dbapi.insertarCategorias({ id_categoria: 1, name:"Marc geogràfic de Catalunya", ambito: 1 }).then(async (result) => {
+
+    }).cath(async (err) => {
+      console.log("Err inser categoria: ", JSON.stringify(err));
+    })
+    await dbapi.insertarCategorias({ id_categoria: 1, name:"Marc geogràfic de Catalunya", ambito: 1 }).then(async (result) => {
+
+    }).cath(async (err) => {
+      console.log("Err inser categoria: ", JSON.stringify(err));
+    })
+    var categorias_coleccion:firestore.CollectionReference = await firebase.firestore.collection("categorias");//.orderBy("id", "asc");
+    await categorias_coleccion.get({ source: "server" }).then(async (querySnapshot:firestore.QuerySnapshot) => {
       querySnapshot.forEach(async (doc) => {
-        //console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
         await dbapi.insertarCategorias({ id_categoria: doc.data().id, name: doc.data().name, ambito: doc.data().ambito}).then(async(result)=>{
+          
         }).cath(async(err)=>{
-          //console.log("Err inser categoria: ",JSON.stringify(err));
+          console.log("Err inser categoria: ",JSON.stringify(err));
         })
       });
-    });
+    }).catch(async(err)=>{
+      console.log("erro categorias: ",JSON.stringify(err));
+    })
   }
  
   async getPreguntas(){
     var preguntas:any=[];
+    preguntas.push({
+      id: 1,
+      ambito:1,
+      dificultad:1,
+      incompatibilidad:[],
+      opciones: ["A","B", "C","D"],
+      respuesta: "A",
+      titulo: " Digueu a quin segle correspon l’obra de Francesc Fontanella?",
+    });
+    preguntas.push({
+      id: 2,
+      ambito:1,
+      dificultad:1,
+      incompatibilidad:[],
+      opciones: ["A","B", "C","D"],
+      respuesta: "A",
+      titulo: " Digueu a quin segle correspon l’obra de Francesc Fontanella?",
+    });
+    preguntas.push({
+      id: 3,
+      ambito:1,
+      dificultad:1,
+      incompatibilidad:[],
+      opciones: ["A","B", "C","D"],
+      respuesta: "A",
+      titulo: " Digueu a quin segle correspon l’obra de Francesc Fontanella?",
+    });
+    secureStorage.set({
+      key: "preguntas",
+      value: JSON.stringify(preguntas),
+    }).then(
+      function (success) {
+        //console.log("Successfully set a value? " + success);
+      }
+    );
     var preguntas_coleccion = await firebase.firestore.collection("preguntas").orderBy("id", "asc");
     await preguntas_coleccion.get({ source: "server" }).then(async (querySnapshot) => {
       querySnapshot.forEach(async (doc) => {

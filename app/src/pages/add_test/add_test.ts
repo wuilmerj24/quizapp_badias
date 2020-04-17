@@ -160,3 +160,9 @@ export function backEvent(args) {
   //if (iRefuseToGoBack) { args.cancel = true; }
   args.object.closeModal({result:null});
 }
+
+export function pageUnloaded(args) {
+  if (app.android) {
+    app.android.off(app.AndroidApplication.activityBackPressedEvent, backEvent);
+  }
+}

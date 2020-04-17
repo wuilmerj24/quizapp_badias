@@ -14,7 +14,7 @@
     <StackLayout id="container" verticalAlignment="top" >
       <Label text="Seleccione una categoría para comenzar el cuestionario" textWrap="true" class="txt_titulo"/>
     </StackLayout>
-    <lv:RadListView id="listView" height="90%" width="100%"  items="{{categorias}}" verticalAlignment="bottom" selectionBehavior="Press" itemSelected="onItemSelected">
+    <lv:RadListView id="listView" height="90%" width="100%"  items="{{categorias}}" verticalAlignment="bottom" selectionBehavior="Press" itemSelected="onItemSelected" itemDeselected="onItemDeselected">
       <lv:RadListView.listViewLayout>
         <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="3" backgroundColor="transparent"/>
       </lv:RadListView.listViewLayout>

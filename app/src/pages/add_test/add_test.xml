@@ -1,4 +1,4 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoaded">
+<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoaded" unloaded="pageUnloaded">
   <Page.actionBar>
     <ActionBar title="" flat="true">
       <StackLayout orientation="horizontal"

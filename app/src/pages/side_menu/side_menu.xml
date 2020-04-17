@@ -8,8 +8,10 @@
         <StackLayout orientation="horizontal" width="100%" horizontalAlignment="center">
       	  <Image class="nt-drawer__header-image fas t-36" src="{{foto}}"/>
         </StackLayout>
-        <Label class="nt-drawer__header-brand" text="{{nom_ape}}" fontSize="14"/>
-        <Label class="nt-drawer__header-footnote" text="{{correo}}" fontSize="14"/>
+        <Label class="nt-drawer__header-brand" text="{{nom_ape}}" fontSize="14" color="#FFFFFF"/>
+        <Label class="nt-drawer__header-footnote" text="{{correo}}" fontSize="14" color="#FFFFFF"/>
+        <Label text="{{'Version '+version_code}}" textWrap="true" class="nt-drawer__header-footnote" color="#FFFFFF" fontSize="10"/>
+        
       </StackLayout>
 			<ScrollView row="1" class="nt-drawer__body">
       	<StackLayout height="100%">
@@ -25,6 +27,7 @@
             <Label row="0" col="0" text="&#xf2f5;" class="nt-icon fas" />
 						<Label row="0" col="1" text="Cerrar sesion" class="p-r-10" color="#010080"/>
           </GridLayout>
+          
           <StackLayout class="hr m-10" borderColor="#010080"></StackLayout>
           <Label text="Enlaces a sitios webs" textWrap="true" color="#010080" class="text-center" tap="{{getEnlaces}}"/>
           <StackLayout class="hr m-10" borderColor="#010080"></StackLayout>

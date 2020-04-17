@@ -17,13 +17,13 @@ export class SesionPageViewModel extends Observable{
   constructor(){
     super();
     this.categorias = new ObservableArray<CategoriaModel>();
-    SelectedPageService.getInstance().updateSelectedPage("Test");
     dbapi.getCategorias().then(async (categorias_db) => {
       for (var i = 0; i < categorias_db.length; i++) {
         //console.log(JSON.stringify(categorias_db[i]));
         this.categorias.push(new CategoriaModel(categorias_db[i].id_categoria, categorias_db[i].name, categorias_db[i].ambito));
       }
     })
+    SelectedPageService.getInstance().updateSelectedPage("Test");
   }
   
   get categorias(): ObservableArray<CategoriaModel> {

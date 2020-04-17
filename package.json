@@ -20,7 +20,6 @@
     "@nstudio/nativescript-loading-indicator": "^3.0.4",
     "@nstudio/nativescript-snackbar": "^1.1.2",
     "nativescript-inappbrowser": "^2.3.0",
-    "nativescript-material-bottomsheet": "^2.5.4",
     "nativescript-plugin-firebase": "^10.5.2",
     "nativescript-secure-storage": "^2.6.0",
     "nativescript-sqlite": "^2.6.0",

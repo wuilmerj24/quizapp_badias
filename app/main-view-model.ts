@@ -16,17 +16,17 @@ export class MainViewModel extends Observable {
     private snackbar:any;
     constructor() {
         super();
+        syncapi.getCategorias();
+        syncapi.getPreguntas();
     }
 
     public async login() {
-        this.loading = await utils.showLoadingSimple("Buscando cuentas.", "Por favor espere...", "#FFFFFF", "#ccc", null)
+        this.loading = utils.showLoadingSimple("Buscando cuentas.", "Por favor espere...", "#FFFFFF", "#ccc", null)
         firebase.login({
             type: firebase.LoginType.GOOGLE,
         }).then(async (result?: User) => {
             dbapi.insertUsuario({ uid: result.uid, correo: result.email, foto: result.photoURL, nom_ape: result.displayName }).then(async (result_insert) => {
                 //console.log(JSON.stringify(result_insert));
-                syncapi.getCategorias();
-                syncapi.getPreguntas();
                 this.changePage();
             }).catch(async (err) => {
                 //console.log("Error insert user: ", JSON.stringify(err));
